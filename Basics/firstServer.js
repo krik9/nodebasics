@@ -1,8 +1,20 @@
 const http = require('http');
 
+var random =  require('./randomCharGenerator');
+
+//Alternative way to generate random chars using node modules
+var crypto = require('crypto');
+
+
 const server = http.createServer((req,res) =>{
 
-    res.end('First Web server');
+    crypto.randomBytes(20,(err,buf) => {
+        var randomValue = buf.toString('hex');
+        res.end(`First Web server with random chars:  ${random.RandomChar(40)} <br> Crypto chars: ${randomValue}`);
+
+    });
+
+    
 });
 
 
